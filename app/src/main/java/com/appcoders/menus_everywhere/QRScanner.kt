@@ -18,6 +18,7 @@ class QRScanner : AppCompatActivity() {
     private val IMAGE_CAPTURE_CODE = 200
     private val PERMISION_CODE = 100
     private var image_rui: Uri? = null
+    //Sup bithces
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
