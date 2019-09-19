@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
             val changeToCameraIntent = Intent(this,QRScanner::class.java)
             startActivity(changeToCameraIntent)
         }
+        goToYourRestaurantsBtn.setOnClickListener {
+            val changeToYourRestaurantsActivity = Intent(this,RestaurantsActivity::class.java)
+            startActivity(changeToYourRestaurantsActivity)
+        }
 
 
     }
