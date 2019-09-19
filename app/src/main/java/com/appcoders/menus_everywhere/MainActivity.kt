@@ -1,5 +1,6 @@
 package com.appcoders.menus_everywhere
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.view.MenuItem
 import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+        }
+
+        btnAccessCamera.setOnClickListener {
+            val changeToCameraIntent = Intent(this,QRScanner::class.java)
+            startActivity(changeToCameraIntent)
         }
     }
 
