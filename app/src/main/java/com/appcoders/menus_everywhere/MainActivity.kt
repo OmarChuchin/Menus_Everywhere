@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
             val changeToCameraIntent = Intent(this,QRScanner::class.java)
             startActivity(changeToCameraIntent)
         }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -37,13 +39,37 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        when (item.itemId) {
+            R.id.action_settings -> this.actionBarItemSelected(1)
+
+            R.id.action_user -> this.actionBarItemSelected(2)
+            else -> this.actionBarItemSelected(0)
+        }
         return when (item.itemId) {
             R.id.action_settings -> true
+
+            R.id.action_user -> true
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun actionBarItemSelected(i: Int) {
+        var newActivityIntent : Intent? = null
+        var itemClicked = i
+        when(itemClicked){
+            2 -> {
+                newActivityIntent = Intent(this,ProfileActivity::class.java)
+            }
+            else -> itemClicked=0
+        }
+        if(itemClicked>0 && newActivityIntent!=null) {
+            startActivity(newActivityIntent)
         }
     }
 }
