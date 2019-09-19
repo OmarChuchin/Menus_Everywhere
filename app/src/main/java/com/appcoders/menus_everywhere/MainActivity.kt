@@ -63,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         var newActivityIntent : Intent? = null
         var itemClicked = i
         when(itemClicked){
+            1-> {
+                newActivityIntent = Intent(this,SettingsActivity::class.java);
+            }
             2 -> {
                 newActivityIntent = Intent(this,ProfileActivity::class.java)
             }
