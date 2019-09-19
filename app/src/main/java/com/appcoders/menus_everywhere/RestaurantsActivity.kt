@@ -12,7 +12,7 @@ class RestaurantsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_restaurants)
         btnHamburguesa.setOnClickListener { view ->
             val intMenu = Intent(this,MenuActivity::class.java);
-            startActivity(intent);
+            startActivity(intMenu);
         }
     }
 }

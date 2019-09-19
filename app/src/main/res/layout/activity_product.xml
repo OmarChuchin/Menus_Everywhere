@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="276dp"
-        android:layout_height="227dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="272dp"
+        android:layout_height="243dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
