@@ -11,7 +11,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         registerBtn.setOnClickListener { view ->
-            val intMin = Intent(this, MainActivity::class.java);
+            val intMin = Intent(this, mainMenu::class.java);
             startActivity(intMin);
         }
     }
