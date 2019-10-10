@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.223" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/editPasswordReg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -34,10 +34,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username3" />
+        app:layout_constraintTop_toBottomOf="@+id/editUsername" />
 
     <EditText
-        android:id="@+id/password3"
+        android:id="@+id/editConfirmPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -51,10 +51,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/editPasswordReg" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/editEmailReg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -70,19 +70,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/username3"
+        android:id="@+id/editUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
 
-        android:hint="Username"
+        android:hint="Nombre"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/editEmailReg" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -92,6 +92,6 @@
         android:text="I Accpet the terms and conditions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password3" />
+        app:layout_constraintTop_toBottomOf="@+id/editConfirmPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

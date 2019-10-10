@@ -7,7 +7,7 @@
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/password2"
+        android:id="@+id/editPasswordReg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -22,10 +22,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username2" />
+        app:layout_constraintTop_toBottomOf="@+id/editEmailReg" />
 
     <EditText
-        android:id="@+id/username2"
+        android:id="@+id/editEmailReg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -48,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password2"
+        app:layout_constraintTop_toBottomOf="@+id/editPasswordReg"
         app:layout_constraintVertical_bias="0.194" />
 
     <Button
