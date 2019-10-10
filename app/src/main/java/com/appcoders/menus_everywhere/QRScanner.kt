@@ -150,7 +150,8 @@ class QRScanner : AppCompatActivity() {
 
     private fun tokenDetected(token: String){
         //Aqui va la funcion que dicta que debe hacer el scanner QR post scaneo.
-        Toast.makeText(this,token,Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,token,Toast.LENGTH_SHORT).show()
+        Log.d("QRDetection",token)
     }
 
 
