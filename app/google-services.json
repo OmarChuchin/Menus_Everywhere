@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "349608689315",
+    "firebase_url": "https://menuseverywhere.firebaseio.com",
+    "project_id": "menuseverywhere",
+    "storage_bucket": "menuseverywhere.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349608689315:android:6819bc6376b34f0e394916",
+        "android_client_info": {
+          "package_name": "com.appcoders.menus_everywhere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349608689315-d58rei6bd55sm1m52gjc3pkrb4thlqlg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appcoders.menus_everywhere",
+            "certificate_hash": "7625a188915fc99ddade18768dc5f47a4cd60245"
+          }
+        },
+        {
+          "client_id": "349608689315-cdkcghimr7dbf8dp5sb6ue03gcp3ed6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuQsomlE4y3wi5lerFvT9RVAD8Mr5X3B8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349608689315-cdkcghimr7dbf8dp5sb6ue03gcp3ed6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
