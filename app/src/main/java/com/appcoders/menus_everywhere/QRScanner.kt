@@ -29,7 +29,7 @@ class QRScanner : AppCompatActivity() {
     private var tokenanterior = ""
     private val MY_PERMISSIONS_REQUEST_CAMERA = 1
 
-    private val QRINTENTTAG = R.string.QRValueTag.toString()
+    private val QRINTENTTAG = R.string.QValueTag.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
