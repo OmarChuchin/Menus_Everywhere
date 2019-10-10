@@ -10,79 +10,156 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.view.*
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.vision.CameraSource
+import com.google.android.gms.vision.Detector
+import com.google.android.gms.vision.barcode.Barcode
+import com.google.android.gms.vision.barcode.BarcodeDetector
 import kotlinx.android.synthetic.main.activity_qrscanner.*
+import java.io.IOException
 
 class QRScanner : AppCompatActivity() {
 
-    private val IMAGE_CAPTURE_CODE = 200
-    private val PERMISION_CODE = 100
-    private var image_rui: Uri? = null
-    //Sup bithces
+    private var cameraSource: CameraSource? = null
+    private var cameraView: SurfaceView? = null
+    private var token = ""
+    private var tokenanterior = ""
+    private val MY_PERMISSIONS_REQUEST_CAMERA = 1
+
+    private val QRINTENTTAG = R.string.QRValueTag.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState);
+        // remove title
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_qrscanner)
 
-        btnActivateCamera.setOnClickListener { view ->
-            this.askForPermissions()
-        }
+        //Set default values to null or it's equivalent
+        this.token = ""
+        this.tokenanterior = ""
 
+        this.cameraView = findViewById<View>(R.id.cameraView) as SurfaceView?
+        this.initQR()
+        
     }
 
-    private fun askForPermissions() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(checkSelfPermission(android.Manifest.permission.CAMERA)==PackageManager.PERMISSION_DENIED || checkSelfPermission(android.Manifest.permission.INTERNET)==PackageManager.PERMISSION_DENIED ||
-                checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION)==PackageManager.PERMISSION_DENIED || checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
-                //there are no permissions for the app to work properly
-                val permissions = arrayOf(Manifest.permission.CAMERA,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.INTERNET,Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                requestPermissions(permissions,this.PERMISION_CODE)
-            }
-            else {
-                //There are permissions for the app
-                this.openCamera()
-            }
-        }
-        else{
-            //There is no need for permissions apparently
-            this.openCamera()
-        }
-    }
+    private fun initQR() {
 
-    private fun openCamera() {
-        val values = ContentValues()
-        values.put(MediaStore.Images.Media.TITLE, "New Picture")
-        values.put(MediaStore.Images.Media.DESCRIPTION, "Taken just now")
-        this.image_rui = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)
+        // creo el detector qr
+        val barcodeDetector = BarcodeDetector.Builder(this)
+            .setBarcodeFormats(Barcode.QR_CODE)
+            .build()
 
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, this.image_rui)
-        startActivityForResult(cameraIntent,IMAGE_CAPTURE_CODE)
-    }
+        // creo la camara
+        this.cameraSource = CameraSource.Builder(this, barcodeDetector)
+            .setRequestedPreviewSize(1600, 1024)
+            .setAutoFocusEnabled(true) //you should add this feature
+            .build()
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode){
-            PERMISION_CODE -> {
-                if(grantResults.size>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                    //Permission from popup was granted
+        // listener de ciclo de vida de la camara
+        this.cameraView!!.holder.addCallback(object : SurfaceHolder.Callback {
+
+            override fun surfaceCreated(holder: SurfaceHolder) {
+
+//                pedirPermisos()
+                if (ActivityCompat.checkSelfPermission(baseContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        // verificamos la version de Android que sea al menos la M para mostrar
+                        // el dialog de la solicitud de la camara
+                        if (shouldShowRequestPermissionRationale(
+                                Manifest.permission.CAMERA))
+                        ;
+                        requestPermissions(arrayOf(Manifest.permission.CAMERA),
+                            MY_PERMISSIONS_REQUEST_CAMERA)
+                    }
+//                    startActivity(somethingWentWrong)
+                } else {
+                    try {
+                        cameraSource!!.start(cameraView!!.holder)
+                    } catch (ie: IOException) {
+                        Log.e("CAMERA SOURCE", "There has been an error")
+//                        startActivity(somethingWentWrong)
+                    }
+
                 }
-                else{
-                    Toast.makeText(this,"You need to grant access for the app to work",Toast.LENGTH_SHORT).show()
+
+            }
+            override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {}
+            override fun surfaceDestroyed(holder: SurfaceHolder) {
+                cameraSource!!.stop()
+            }
+
+        })
+
+        // preparo el detector de QR
+        barcodeDetector.setProcessor(object : Detector.Processor<Barcode> {
+
+            override fun release() {}
+
+            override fun receiveDetections(detections: Detector.Detections<Barcode>) {
+                val barcodes = detections.getDetectedItems()
+
+                if (barcodes.size() > 0) {
+
+                    // obtenemos el token
+                    token = barcodes.valueAt(0).displayValue.toString()
+
+                    // verificamos que el token anterior no sea igual al actual
+                    // esto es util para evitar multiples llamadas empleando el mismo token
+                    if (token != tokenanterior) {
+
+                        // guardamos el ultimo token proceado
+                        tokenanterior = token
+                        Log.i("token", token)
+
+
+                        Thread(object : Runnable {
+                            override fun run() {
+                                try {
+                                    synchronized(this) {
+                                        Thread.sleep(5000)
+                                        // limpiamos el token
+                                        tokenanterior = ""
+                                    }
+                                } catch (e: InterruptedException) {
+                                    Log.e("Error", "Waiting didnt work!!")
+                                    e.printStackTrace()
+                                }
+                            }
+                        }).start()
+
+                        tokenDetected(token)
+
+
+                    }
                 }
             }
-        }
+        })
+
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK){
-            imgPhoto.setImageURI(this.image_rui)
-        }
+    private fun tokenDetected(token: String){
+        //Aqui va la funcion que dicta que debe hacer el scanner QR post scaneo.
+        Toast.makeText(this,token,Toast.LENGTH_SHORT).show()
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.cameraSource?.stop()
+        this.cameraView = null
+        this.cameraSource = null
     }
 
 
