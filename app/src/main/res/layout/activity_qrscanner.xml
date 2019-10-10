@@ -7,22 +7,12 @@
     android:orientation="vertical"
     tools:context=".QRScanner">
 
-    <ImageView
-        android:id="@+id/imgPhoto"
+    <SurfaceView
+        android:id="@+id/cameraView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnActivateCamera"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
-
-    <Button
-        android:id="@+id/btnActivateCamera"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Activate Camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
