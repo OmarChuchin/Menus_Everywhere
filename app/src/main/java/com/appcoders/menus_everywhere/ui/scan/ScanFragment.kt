@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.appcoders.menus_everywhere.R
 class ScanFragment : Fragment() {
 
     private val MY_PERMISSIONS_REQUEST_CAMERA = 1
+    private var secondComing = 0
 
 
     override fun onCreateView(
@@ -53,5 +55,29 @@ class ScanFragment : Fragment() {
                 // Mostrar mensaje sobre cómo activar el permiso
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        this.controler(layoutInflater,container)
+        this.controler()
+    }
+
+    private fun controler() {
+        if(this.secondComing == 0){
+            this.secondComing++;
+            Log.d("QRBack","He salido del framento original")
+        }
+        else{
+            Log.d("QRBack", "He vuelto al fragmento original")
+//            super.setTargetFragment(this.targetFragment,R.layout.fragment_home)
+            super.getActivity()!!.onBackPressed()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("QRDestroy","I was destroyed")
+        this.secondComing = 0
     }
 }

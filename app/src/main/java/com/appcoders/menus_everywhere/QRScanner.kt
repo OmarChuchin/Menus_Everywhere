@@ -1,24 +1,17 @@
 package com.appcoders.menus_everywhere
 
 import android.Manifest
-import android.app.Activity
-import android.content.ContentValues
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
-import kotlinx.android.synthetic.main.activity_qrscanner.*
 import java.io.IOException
 
 class QRScanner : AppCompatActivity() {
@@ -34,14 +27,12 @@ class QRScanner : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         // remove title
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-
-        window.setFlags(
+        this.window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(R.layout.activity_qrscanner)
+        this.setContentView(R.layout.activity_qrscanner)
 
         //Set default values to null or it's equivalent
         this.token = ""
