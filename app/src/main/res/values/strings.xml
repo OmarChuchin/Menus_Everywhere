@@ -16,4 +16,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main_menu">mainMenu</string>
     <string name="QValueTag">QRValueTag</string>
+
+    <string name="facebook_app_id">1022184578173606</string>
+    <string name="fb_login_protocol_scheme">fb1022184578173606</string>
+
 </resources>
