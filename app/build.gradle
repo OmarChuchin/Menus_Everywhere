@@ -49,8 +49,12 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
     //Implementa la libreria que usa la camara para el QR Scanner
     implementation 'com.google.android.gms:play-services-vision:15.+'
+    //Implementa librería para firebase
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.google.firebase:firebase-database:16.0.4'
+    //Lo que se implementa de FBButton
+    implementation 'com.facebook.android:facebook-login:[5,6)'
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.appcoders.menus_everywhere.LoginActivity
 import com.appcoders.menus_everywhere.R
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_setting.view.*
 
@@ -26,6 +27,7 @@ class SettingsFragment : Fragment() {
             signOut()
             val int = Intent(inflater.context, LoginActivity::class.java)
             startActivity(int)
+            activity?.finish()
         }
 
         return root
@@ -33,6 +35,6 @@ class SettingsFragment : Fragment() {
 
     fun signOut(){
         fbAuth.signOut()
-
+        LoginManager.getInstance().logOut();
     }
 }
