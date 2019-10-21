@@ -1,6 +1,7 @@
 package com.appcoders.menus_everywhere
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -141,8 +142,10 @@ class QRScanner : AppCompatActivity() {
 
     private fun tokenDetected(token: String){
         //Aqui va la funcion que dicta que debe hacer el scanner QR post scaneo.
-//        Toast.makeText(this,token,Toast.LENGTH_SHORT).show()
         Log.d("QRDetection",token)
+        val intent = Intent(this,LoginActivity::class.java)
+        intent.putExtra("QRScannedValue",token)
+        startActivity(intent)
     }
 
 
