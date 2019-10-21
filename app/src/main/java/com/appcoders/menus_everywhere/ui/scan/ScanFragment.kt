@@ -38,7 +38,7 @@ class ScanFragment : Fragment() {
         } else {
 //            val intent = I
 //                Toast.makeText(this,"ya tengo permisos perro",Toast.LENGTH_SHORT).show()
-            val callScanner = Intent(layoutInflater.context,QRScanner::class.java)
+            val callScanner = Intent(layoutInflater.context, QRScanner::class.java)
             startActivity(callScanner)
         }
 

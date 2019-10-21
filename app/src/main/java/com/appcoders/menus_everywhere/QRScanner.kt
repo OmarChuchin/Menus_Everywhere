@@ -40,7 +40,7 @@ class QRScanner : AppCompatActivity() {
 
         this.cameraView = findViewById<View>(R.id.cameraView) as SurfaceView?
         this.initQR()
-        
+
     }
 
     private fun initQR() {
