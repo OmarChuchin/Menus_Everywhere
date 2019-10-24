@@ -8,6 +8,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.element_menu.view.*
 import java.sql.Blob
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import java.nio.file.Files.delete
+import android.widget.TextView
+
+
+
+
 
 class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuCard {
@@ -21,6 +28,7 @@ class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerV
 
     override fun onBindViewHolder(holder: MenuCard, position: Int) {
         val card = arrayMenu[position]
+
         holder.set( card)
     }
 
@@ -32,6 +40,7 @@ class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerV
             }
             view.imageView2.setImageResource(R.drawable.img_hamburgesa2);
         }
-
     }
+
+
 }
