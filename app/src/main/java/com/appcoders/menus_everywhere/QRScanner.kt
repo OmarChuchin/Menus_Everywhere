@@ -16,6 +16,8 @@ import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.google.firebase.database.FirebaseDatabase
 import java.io.IOException
 
+//Clase para crear el scanner de QR. Inicializa la cámara, el scanner y procesa los códigos.
+
 class QRScanner : AppCompatActivity() {
 
     private var cameraSource: CameraSource? = null
