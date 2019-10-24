@@ -19,7 +19,8 @@ class HomeFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        textView.text = "Hola HOME"
+        textView.text = "Restaurantes favoritos"
+
         return root
     }
 }
