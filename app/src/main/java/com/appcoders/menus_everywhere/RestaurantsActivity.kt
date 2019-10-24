@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_restaurants.*
 
+// Clase para crear la actividad de restaurante después es escanear un código QR.
+
 class RestaurantsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
