@@ -11,9 +11,7 @@ import java.sql.Blob
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import java.nio.file.Files.delete
 import android.widget.TextView
-
-
-
+import androidx.recyclerview.widget.RecyclerView.inflate
 
 
 class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
@@ -28,15 +26,15 @@ class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerV
 
     override fun onBindViewHolder(holder: MenuCard, position: Int) {
         val card = arrayMenu[position]
-
-        holder.set( card)
+        holder.set( card,holder.view.context)
     }
 
     inner class MenuCard(var view :View): RecyclerView.ViewHolder(view){
-        fun set(card :String) {
+        fun set(card :String, context: Context) {
             view.menuButton.text = card;
             view.menuButton.setOnClickListener { view ->
-                print("Tarjeta es : $card");
+                println("Tarjeta es : $card");
+                Toast.makeText(context,card,Toast.LENGTH_LONG).show();
             }
             view.imageView2.setImageResource(R.drawable.img_hamburgesa2);
         }
