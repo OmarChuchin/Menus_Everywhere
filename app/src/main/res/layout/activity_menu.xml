@@ -2,83 +2,42 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menuMainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <TextView
+        android:id="@+id/restaurantNameText"
         android:layout_width="0dp"
-        android:layout_height="171dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#00C08E8E"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_hamburgesa2"
-        tools:srcCompat="@drawable/img_hamburgesa2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="sometext"
+        android:textAlignment="viewStart"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMenu"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
-
-        <TextView
-            android:id="@+id/restaurantNameText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00C08E8E"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/buttonSencilla"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/transparent"
-            android:text="Hamburguesa Sencilla"
-            android:textAlignment="viewStart" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:text="Hamburguesa Con Aros"
-            android:textAlignment="viewStart" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:text="Hamburguesa Vegetariana"
-            android:textAlignment="viewStart" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:text="Hamburguesa Vegana"
-            android:textAlignment="viewStart" />
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:text="Hamburguesa Pollo"
-            android:textAlignment="viewStart" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/restaurantNameText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
