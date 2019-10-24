@@ -8,14 +8,15 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="27dp"
-        android:layout_height="wrap_content"
+        android:layout_height="136dp"
         android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <Button
         android:id="@+id/menuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="122dp"
+        android:layout_width="83dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="Button" />
 </LinearLayout>

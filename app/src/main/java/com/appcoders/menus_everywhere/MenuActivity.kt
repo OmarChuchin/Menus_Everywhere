@@ -16,6 +16,7 @@ import com.google.android.gms.vision.text.Line
 import com.google.firebase.FirebaseError
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.element_menu.*
 
 
 class MenuActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class MenuActivity : AppCompatActivity() {
         /*Firebase interaction*/
         val extras = intent.extras?.getString("QRScannedValue") //get restaurant key off QRScanner
         val fbRestauranteInstance = FirebaseDatabase.getInstance()
-        var restaurantQuery = fbRestauranteInstance.getReference().child("Restaurante").orderByKey()
+        val restaurantQuery = fbRestauranteInstance.getReference().child("Restaurante").orderByKey()
         val layout = LinearLayoutManager(this)
         layout.orientation = LinearLayoutManager.VERTICAL
         rvMenu.layoutManager = layout

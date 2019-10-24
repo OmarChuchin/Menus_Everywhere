@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.element_menu.view.*
 import java.sql.Blob
@@ -26,6 +27,10 @@ class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerV
     inner class MenuCard(var view :View): RecyclerView.ViewHolder(view){
         fun set(card :String) {
             view.menuButton.text = card;
+            view.menuButton.setOnClickListener { view ->
+                print("Tarjeta es : $card");
+            }
+            view.imageView2.setImageResource(R.drawable.img_hamburgesa2);
         }
 
     }
