@@ -13,6 +13,7 @@ import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
+import com.google.firebase.database.FirebaseDatabase
 import java.io.IOException
 
 class QRScanner : AppCompatActivity() {
@@ -143,9 +144,10 @@ class QRScanner : AppCompatActivity() {
     private fun tokenDetected(token: String){
         //Aqui va la funcion que dicta que debe hacer el scanner QR post scaneo.
         Log.d("QRDetection",token)
-        val intent = Intent(this,LoginActivity::class.java)
+        val intent = Intent(this,MenuActivity::class.java)
         intent.putExtra("QRScannedValue",token)
         startActivity(intent)
+
     }
 
 
