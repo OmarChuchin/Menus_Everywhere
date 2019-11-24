@@ -14,7 +14,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.inflate
 
 
-class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
+class MenuAdapter(val context: Context, val arrayMenu: Array<Alimento>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuCard {
         val view = LayoutInflater.from(context).inflate(R.layout.element_menu,parent,false)
         return MenuCard(view)
@@ -25,16 +25,20 @@ class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerV
     }
 
     override fun onBindViewHolder(holder: MenuCard, position: Int) {
-        val card = arrayMenu[position]
+        val card = arrayMenu[position].nombre
         holder.set( card,holder.view.context)
     }
 
     inner class MenuCard(var view :View): RecyclerView.ViewHolder(view){
         fun set(card :String, context: Context) {
-            view.menuButton.text = card;
+            view.menuButton.text = card
             view.menuButton.setOnClickListener { view ->
-                println("Tarjeta es : $card");
-                Toast.makeText(context,card,Toast.LENGTH_LONG).show();
+                println("Tarjeta es : $card")
+                Toast.makeText(context,card,Toast.LENGTH_LONG).show()
+                //todo: ligar a activity menu xml
+                //todo: pasar argumentos para query de activity menu
+
+
             }
             view.imageView2.setImageResource(R.drawable.img_hamburgesa2);
         }

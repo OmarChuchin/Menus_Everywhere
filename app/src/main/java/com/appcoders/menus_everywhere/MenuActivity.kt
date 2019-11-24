@@ -1,22 +1,11 @@
 package com.appcoders.menus_everywhere
 
-import android.app.SearchManager
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.tasks.OnCanceledListener
-import com.google.android.gms.vision.text.Line
-import com.google.firebase.FirebaseError
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_menu.*
-import kotlinx.android.synthetic.main.element_menu.*
 
 
 class MenuActivity : AppCompatActivity() {
@@ -38,25 +27,42 @@ class MenuActivity : AppCompatActivity() {
 
         /*The following regex checks for extras!=null and queries for its childs key*/
         extras?.let {
-            restaurantQuery.ref.child(it).addValueEventListener(object : ValueEventListener{
+            restaurantQuery.ref.child(it).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
-                    restaurantNameText.setText(p0.child("Nombre").getValue().toString())
-                    for(restaurantRegister in p0.children) {
-                        if(restaurantRegister.key == "Menú") {
-                            for(menuRegister in restaurantRegister.children){
-                                //Toast.makeText(applicationContext,menuRegister.key.toString(),Toast.LENGTH_LONG).show()
-                                menuSubsectionsArray.add(menuRegister.key.toString())
-                                Toast.makeText(applicationContext,menuSubsectionsArray.toString(),Toast.LENGTH_LONG).show()
-                                val adapter = MenuAdapter(this@MenuActivity,menuSubsectionsArray.toTypedArray())
-                                rvMenu.adapter = adapter
+                    //extract name and set it in display
+                    val restaurant = RestauranteID(p0.child("Nombre").getValue().toString())
+                    val menu = Menu()
+                    restaurantNameText.setText(restaurant.nombre)
 
-                            }
+                    for (alimento in p0.child("Menú").children) {
+
+                        val currentAlimento = Alimento(alimento.key.toString())
+
+                        for (platillo in alimento.children){
+                            val currentPlatillo =  Platillo(
+                                platillo.key.toString(),
+                                platillo.child("Calorias").toString(),
+                                platillo.child("Descripción").toString(),
+                                platillo.child("Precio").toString())
+                            currentAlimento.platillos.add(currentPlatillo)
                         }
 
+                        menu.alimentos.add(currentAlimento)
+
+                        menuSubsectionsArray.add(currentAlimento.nombre)
+                        //Toast.makeText(applicationContext,menuSubsectionsArray.toString(),Toast.LENGTH_LONG).show()
+
+                        val adapter =
+                            MenuAdapter(this@MenuActivity,menu.alimentos.toTypedArray())
+                        rvMenu.adapter = adapter
+
                     }
+
                 }
+
                 override fun onCancelled(p0: DatabaseError) {
-                    Toast.makeText(applicationContext,"Algo ha pasado mal",Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Algo ha pasado mal", Toast.LENGTH_LONG)
+                        .show()
                     TODO("some more precise cases")
                 }
             })
@@ -64,8 +70,6 @@ class MenuActivity : AppCompatActivity() {
         }
 
         /*Fetch each element of the Menu*/
-
-
 
 
     }
