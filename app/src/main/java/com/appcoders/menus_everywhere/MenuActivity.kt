@@ -38,7 +38,7 @@ class MenuActivity : AppCompatActivity() {
 
                         val currentAlimento = Alimento(alimento.key.toString())
 
-                        for (platillo in alimento.children){
+                        for (platillo in alimento.children){ //creaate a dto and populate with external data
                             val currentPlatillo =  Platillo(
                                 platillo.key.toString(),
                                 platillo.child("Calorias").toString(),

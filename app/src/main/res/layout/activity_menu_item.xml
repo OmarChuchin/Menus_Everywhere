@@ -5,7 +5,7 @@
     android:id="@+id/menuMainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity">
+    tools:context=".MenuItemActivity">
 
     <TextView
         android:id="@+id/restaurantNameText"
@@ -20,11 +20,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/itemButton"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="647dp"
+        android:background="@android:color/transparent"
+        android:text="sometext"
+        android:textAlignment="viewStart"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurantNameText" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMenu"
+        android:id="@+id/rvMenuItem"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/itemButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restaurantNameText" />

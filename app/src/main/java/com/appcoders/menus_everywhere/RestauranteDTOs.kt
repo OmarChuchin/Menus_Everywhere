@@ -1,10 +1,13 @@
 package com.appcoders.menus_everywhere
 
+import java.io.Serializable
+
 //Clase que despliega el menú de un restaurante después de escanear y procesar el código QR correspondiente.
 // Cada menú tiene distintas categorías, cada categoría tiene distintos productos.
 
 class Restaurante(var restauranteID :RestauranteID)
-class RestauranteID(val nombre :String){
+
+class RestauranteID (val nombre :String) {
 
     val menu = Menu();
     val informacion = Informacion();
