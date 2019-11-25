@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
                     val post = child;
                     if (post != null) {
                         println(post.key)
-                        restaurantSubsectionsArray.add(post.child("Nombre").value.toString())
+                        restaurantSubsectionsArray.add(post.child("nombre").value.toString())
                         val adapter = RestaurantAdapter(inflater.context,restaurantSubsectionsArray.toTypedArray(),post.key!!.toInt())
                         root.listaRestaurante.adapter = adapter
                     }

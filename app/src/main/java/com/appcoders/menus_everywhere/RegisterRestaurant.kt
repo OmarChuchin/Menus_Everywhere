@@ -97,7 +97,7 @@ class RegisterRestaurant : AppCompatActivity() {
                     Log.d(TAG,topKey.toString())
                     var name = registro.child("nombre").value.toString()
                     if(name == null || name == "" || name =="null"){
-                        name = registro.child("Nombre").value.toString()
+                        name = registro.child("nombre").value.toString()
                     }
                     if(position<topKey){
                         position=topKey
@@ -128,6 +128,6 @@ class RegisterRestaurant : AppCompatActivity() {
 data class Información(var admin:String,var contacto:String,var dirección:String){
     constructor() : this("","","")
 }
-data class RestauranteInfo(var Nombre:String,val Información:Información){
+data class RestauranteInfo(var nombre:String,val Información:Información){
     constructor() : this("", Información())
 }

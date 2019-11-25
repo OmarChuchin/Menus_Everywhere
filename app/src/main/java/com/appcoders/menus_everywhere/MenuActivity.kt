@@ -30,7 +30,7 @@ class MenuActivity : AppCompatActivity() {
             restaurantQuery.ref.child(it).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
                     //extract name and set it in display
-                    val restaurant = RestauranteID(p0.child("Nombre").getValue().toString())
+                    val restaurant = RestauranteID(p0.child("nombre").getValue().toString())
                     val menu = Menu()
                     restaurantNameText.setText(restaurant.nombre)
 

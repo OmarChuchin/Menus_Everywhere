@@ -42,9 +42,6 @@ class MenuAdapter(val context: Context, val arrayMenu: Array<Alimento>): Recycle
                 startActivity(view.context,intent,null)
 
 
-                //todo: ligar a activity menu xml
-                //todo: pasar argumentos para query de activity menu
-
 
             }
 

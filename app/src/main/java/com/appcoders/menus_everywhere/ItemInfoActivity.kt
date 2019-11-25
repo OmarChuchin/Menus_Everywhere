@@ -12,7 +12,7 @@ class ItemInfoActivity : AppCompatActivity() {
 
         itemInfoTitle.setText(intent.getStringExtra("nombrePlatillo"))
         itemDescription.setText(intent.getStringExtra("descripcion"))
-        itemCalories.setText(intent.getStringExtra("calorias"))
+        itemCalories.setText("Calorías: "+intent.getStringExtra("calorias"))
         itemPrice.setText(intent.getStringExtra("precio"))
 
 
