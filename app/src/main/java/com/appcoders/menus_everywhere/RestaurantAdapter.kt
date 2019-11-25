@@ -31,7 +31,7 @@ class RestaurantAdapter (val context: Context, val arrayMenu: Array<String>, val
             view.menuButton.text = card;
             view.menuButton.setOnClickListener { view ->
                 val intent = Intent(context, MenuActivity::class.java)
-                intent.putExtra("QRScannedValue",value.toString())
+                intent.putExtra("QRScannedValue","0")
                 val bundle:Bundle = intent.extras!!
                 startActivity(context,intent,bundle)
             }
