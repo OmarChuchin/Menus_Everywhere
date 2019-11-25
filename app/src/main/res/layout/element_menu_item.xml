@@ -6,15 +6,15 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/menuItemImage"
         android:layout_width="27dp"
         android:layout_height="136dp"
         android:layout_weight="1"
         android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic[4]" />
 
     <Button
-        android:id="@+id/menuButton"
+        android:id="@+id/menuItemButton"
         android:layout_width="83dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

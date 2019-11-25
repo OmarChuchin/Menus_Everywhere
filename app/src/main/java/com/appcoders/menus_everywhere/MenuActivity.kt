@@ -41,9 +41,9 @@ class MenuActivity : AppCompatActivity() {
                         for (platillo in alimento.children){ //creaate a dto and populate with external data
                             val currentPlatillo =  Platillo(
                                 platillo.key.toString(),
-                                platillo.child("Calorias").toString(),
-                                platillo.child("Descripción").toString(),
-                                platillo.child("Precio").toString())
+                                platillo.child("Calorias").value.toString(),
+                                platillo.child("Descripción").value.toString(),
+                                platillo.child("Precio").value.toString())
                             currentAlimento.platillos.add(currentPlatillo)
                         }
 
