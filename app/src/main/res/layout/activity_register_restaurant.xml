@@ -114,11 +114,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
-                android:hint="Re-enter Password"
-                android:inputType="textPersonName" />
+                android:hint="Confirm the password"
+                android:inputType="textPassword"
+                tools:layout_marginTop="16" />
 
             <TextView
                 android:id="@+id/tvAddress"

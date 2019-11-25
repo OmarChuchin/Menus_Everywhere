@@ -1,5 +1,6 @@
 package com.appcoders.menus_everywhere
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +29,7 @@ class RegisterRestaurant : AppCompatActivity() {
             if(this.areFieldsComplete){
                 Log.d("SubmitInfo","Data read correctly")
                 this.getRestaurantID()
-                Toast.makeText(this,"Your info has been sent",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,"Your info has been sent",Toast.LENGTH_SHORT).show()
             }else{
                 if(!this.samePasswords(etPassword.text.toString(),etConfirmPassword.text.toString())){
                     Toast.makeText(this,"The passwords do not coincide, please try again",Toast.LENGTH_SHORT).show()
@@ -73,7 +74,9 @@ class RegisterRestaurant : AppCompatActivity() {
         val rInfo = RestauranteInfo(resName,info)
         restaurantRef.setValue(rInfo)
 //        restaurantRef.setValue("Nombre:"+resName)
-
+        Toast.makeText(this,"The restaurant ${resName} has been added to the database",Toast.LENGTH_SHORT).show()
+        val i = Intent(baseContext,mainMenu::class.java)
+        startActivity(i)
     }
 
     private fun getRestaurantID(){
@@ -85,10 +88,36 @@ class RegisterRestaurant : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                if(p0.exists()){
-                    id = p0.childrenCount
+                var previouslyExists = false
+                var inputName = etRestaurantName.text.toString()
+                inputName = inputName.toLowerCase()
+                var position : Long = 0
+                for(registro in p0.children){
+                    val topKey = registro.key!!.toLong()
+                    Log.d(TAG,topKey.toString())
+                    var name = registro.child("nombre").value.toString()
+                    if(name == null || name == "" || name =="null"){
+                        name = registro.child("Nombre").value.toString()
+                    }
+                    if(position<topKey){
+                        position=topKey
+                    }
+                    name = name.toLowerCase()
+//                    Log.d(TAG,inputName+" Input Name")
+//                    Log.d(TAG,name + " Database name")
+                    if(inputName == name){
+                        Log.d(TAG,"The name is already used")
+                        previouslyExists = true
+                        break
+                    }
+                }
+                if(!previouslyExists){
+                    id = position + 1
                     Log.d(TAG,"Updating the database now")
                     registerRestaurant(id)
+                } else{
+                    Toast.makeText(baseContext,"This Restaurant is already registered on the App, sorry :)",Toast.LENGTH_SHORT).show()
+                    Log.d(TAG,"This restaurant is previously used")
                 }
             }
 
