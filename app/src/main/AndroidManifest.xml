@@ -48,6 +48,7 @@
         <activity android:name=".RestaurantsActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".RegisterRestaurant"/>
         <activity
             android:name=".RegisterActivity"
             android:label="Sign up" />
