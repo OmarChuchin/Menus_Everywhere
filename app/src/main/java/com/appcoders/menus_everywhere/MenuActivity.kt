@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_menu.*
 
+
 class MenuActivity : AppCompatActivity() {
 
 
@@ -26,33 +27,51 @@ class MenuActivity : AppCompatActivity() {
 
         /*The following regex checks for extras!=null and queries for its childs key*/
         extras?.let {
-            restaurantQuery.ref.child(it).addValueEventListener(object : ValueEventListener{
+            restaurantQuery.ref.child(it).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
-                    restaurantNameText.setText(p0.child("Nombre").getValue().toString())
-                    for(restaurantRegister in p0.children) {
-                        if(restaurantRegister.key == "Menú") {
-                            for(menuRegister in restaurantRegister.children){
-                                //Toast.makeText(applicationContext,menuRegister.key.toString(),Toast.LENGTH_LONG).show()
-                                menuSubsectionsArray.add(menuRegister.key.toString())
-                                Toast.makeText(applicationContext,menuSubsectionsArray.toString(),Toast.LENGTH_LONG).show()
-                                val adapter = MenuAdapter(this@MenuActivity,menuSubsectionsArray.toTypedArray())
-                                rvMenu.adapter = adapter
+                    //extract name and set it in display
+                    val restaurant = RestauranteID(p0.child("Nombre").getValue().toString())
+                    val menu = Menu()
+                    restaurantNameText.setText(restaurant.nombre)
 
-                            }
+                    for (alimento in p0.child("Menú").children) {
+
+                        val currentAlimento = Alimento(alimento.key.toString())
+
+                        for (platillo in alimento.children){ //creaate a dto and populate with external data
+                            val currentPlatillo =  Platillo(
+                                platillo.key.toString(),
+                                platillo.child("Calorias").value.toString(),
+                                platillo.child("Descripción").value.toString(),
+                                platillo.child("Precio").value.toString())
+                            currentAlimento.platillos.add(currentPlatillo)
                         }
 
+                        menu.alimentos.add(currentAlimento)
+
+                        menuSubsectionsArray.add(currentAlimento.nombre)
+                        //Toast.makeText(applicationContext,menuSubsectionsArray.toString(),Toast.LENGTH_LONG).show()
+
+                        val adapter =
+                            MenuAdapter(this@MenuActivity,menu.alimentos.toTypedArray())
+                        rvMenu.adapter = adapter
+
                     }
+
                 }
+
                 override fun onCancelled(p0: DatabaseError) {
-                    Toast.makeText(applicationContext,"Algo ha pasado mal",Toast.LENGTH_LONG).show()
+
+                    Toast.makeText(applicationContext, "Algo ha pasado mal", Toast.LENGTH_LONG)
+                        .show()
+                    TODO("some more precise cases")
+
                 }
             })
 
         }
 
         /*Fetch each element of the Menu*/
-
-
 
 
     }

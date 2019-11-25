@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterRestaurant"></activity>
+
+        <activity android:name=".ItemInfoActivity"></activity>
+        <activity android:name=".MenuItemActivity" />
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -38,7 +41,8 @@
         </activity>
         <activity
             android:name=".mainMenu"
-            android:label="@string/title_activity_main_menu"></activity>
+            android:label="@string/title_activity_main_menu" />
+
         <activity android:name=".ProductActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RestaurantsActivity" />
