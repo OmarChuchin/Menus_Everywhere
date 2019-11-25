@@ -61,9 +61,11 @@ class MenuActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(p0: DatabaseError) {
+
                     Toast.makeText(applicationContext, "Algo ha pasado mal", Toast.LENGTH_LONG)
                         .show()
                     TODO("some more precise cases")
+
                 }
             })
 

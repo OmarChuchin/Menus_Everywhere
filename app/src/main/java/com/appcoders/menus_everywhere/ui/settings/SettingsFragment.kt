@@ -2,12 +2,14 @@ package com.appcoders.menus_everywhere.ui.settings
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.appcoders.menus_everywhere.LoginActivity
 import com.appcoders.menus_everywhere.R
+import com.appcoders.menus_everywhere.RegisterRestaurant
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_setting.view.*
@@ -22,7 +24,7 @@ class SettingsFragment : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_setting, container, false)
-        val button = root.logutButton;
+        val button = root.logutButton
         button.setOnClickListener { view ->
             signOut()
             val int = Intent(inflater.context, LoginActivity::class.java)
@@ -30,11 +32,18 @@ class SettingsFragment : Fragment() {
             activity?.finish()
         }
 
+        val btnRegisterRestaurants = root.btnRegisterRestaurant
+        btnRegisterRestaurants.setOnClickListener { view ->
+//            Log.d("BtnTransfer","ButtonClicked")
+            val i = Intent(inflater.context, RegisterRestaurant::class.java)
+            startActivity(i)
+        }
+
         return root
     }
 
     fun signOut(){
         fbAuth.signOut()
-        LoginManager.getInstance().logOut();
+        LoginManager.getInstance().logOut()
     }
 }

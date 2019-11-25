@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat.startActivity
 import com.google.gson.Gson
 
 
+
 class MenuAdapter(val context: Context, val arrayMenu: Array<Alimento>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuCard {
         val view = LayoutInflater.from(context).inflate(R.layout.element_menu,parent,false)
