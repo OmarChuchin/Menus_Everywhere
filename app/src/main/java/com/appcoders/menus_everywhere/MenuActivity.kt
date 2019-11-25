@@ -1,23 +1,11 @@
 package com.appcoders.menus_everywhere
 
-import android.app.SearchManager
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.tasks.OnCanceledListener
-import com.google.android.gms.vision.text.Line
-import com.google.firebase.FirebaseError
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_menu.*
-import kotlinx.android.synthetic.main.element_menu.*
-
 
 class MenuActivity : AppCompatActivity() {
 
@@ -57,7 +45,6 @@ class MenuActivity : AppCompatActivity() {
                 }
                 override fun onCancelled(p0: DatabaseError) {
                     Toast.makeText(applicationContext,"Algo ha pasado mal",Toast.LENGTH_LONG).show()
-                    TODO("some more precise cases")
                 }
             })
 

@@ -7,11 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.element_menu.view.*
-import java.sql.Blob
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import java.nio.file.Files.delete
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView.inflate
 
 
 class MenuAdapter(val context: Context, val arrayMenu: Array<String>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
