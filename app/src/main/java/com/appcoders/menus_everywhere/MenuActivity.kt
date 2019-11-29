@@ -23,6 +23,8 @@ class MenuActivity : AppCompatActivity() {
         layout.orientation = LinearLayoutManager.VERTICAL
         rvMenu.layoutManager = layout
         val menuSubsectionsArray = mutableListOf<String>()
+        val imagenes = mutableListOf<Int>()
+        imagenes.add(R.drawable.img_hamburgesa1)
 
 
         /*The following regex checks for extras!=null and queries for its childs key*/
@@ -52,8 +54,7 @@ class MenuActivity : AppCompatActivity() {
                         menuSubsectionsArray.add(currentAlimento.nombre)
                         //Toast.makeText(applicationContext,menuSubsectionsArray.toString(),Toast.LENGTH_LONG).show()
 
-                        val adapter =
-                            MenuAdapter(this@MenuActivity,menu.alimentos.toTypedArray())
+                        val adapter =  MenuAdapter(this@MenuActivity,menu.alimentos.toTypedArray(), imagenes.toTypedArray())
                         rvMenu.adapter = adapter
 
                     }

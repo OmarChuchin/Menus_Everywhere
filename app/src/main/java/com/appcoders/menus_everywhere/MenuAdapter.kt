@@ -13,7 +13,7 @@ import com.google.gson.Gson
 
 
 
-class MenuAdapter(val context: Context, val arrayMenu: Array<Alimento>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
+class MenuAdapter(val context: Context, val arrayMenu: Array<Alimento>, val arrayImage: Array<Int>): RecyclerView.Adapter<MenuAdapter.MenuCard>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuCard {
         val view = LayoutInflater.from(context).inflate(R.layout.element_menu,parent,false)
         return MenuCard(view)
@@ -25,27 +25,27 @@ class MenuAdapter(val context: Context, val arrayMenu: Array<Alimento>): Recycle
 
     override fun onBindViewHolder(holder: MenuCard, position: Int) {
         val card = arrayMenu[position].nombre
-        holder.set( card,holder.view.context,position)
+        var imagen: Int;
+        try {
+            imagen = arrayImage[position]
+        }catch (e : ArrayIndexOutOfBoundsException){
+            imagen = R.drawable.food_holder
+        }
+        holder.set( card,holder.view.context,position, imagen)
     }
 
     inner class MenuCard(var view :View): RecyclerView.ViewHolder(view){
 
-        fun set(card :String, context: Context, position: Int) {
+        fun set(card :String, context: Context, position: Int, imagen: Int) {
             view.menuButton.text = card
             view.menuButton.setOnClickListener { view ->
-
                 val gson = Gson()
                 val intent = Intent(view.context, MenuItemActivity::class.java)
-
                 intent.putExtra("alimento", gson.toJson(arrayMenu.get(position)))
-
                 startActivity(view.context,intent,null)
-
-
-
             }
 
-            view.imageView2.setImageResource(R.drawable.img_hamburgesa2)
+            view.imageView2.setImageResource(imagen)
             //Toast.makeText(context,cIndex,Toast.LENGTH_LONG).show()
 
         }

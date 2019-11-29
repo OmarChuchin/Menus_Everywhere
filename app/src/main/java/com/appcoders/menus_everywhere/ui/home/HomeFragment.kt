@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
                 for (child in dataSnapshot.getChildren()) {
                     val post = child;
                     if (post != null) {
-                        println(post.key)
+                        println(post)
                         restaurantSubsectionsArray.add(post.child("nombre").value.toString())
                         val adapter = RestaurantAdapter(inflater.context,restaurantSubsectionsArray.toTypedArray(),arrPostKey.toTypedArray(),imagenes.toTypedArray())
                         root.listaRestaurante.adapter = adapter
