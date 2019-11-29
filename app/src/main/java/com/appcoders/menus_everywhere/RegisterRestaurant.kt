@@ -50,11 +50,18 @@ class RegisterRestaurant : AppCompatActivity() {
         val adminEmail = etAdminEmail.text.toString()
         val contEmail = etContactEmail.text.toString()
         val resName = etRestaurantName.text.toString()
+        Log.d(TAG,address)
+        Log.d(TAG,password)
+        Log.d(TAG,confirmPassword)
+        Log.d(TAG,adminEmail)
+        Log.d(TAG,contEmail)
+        Log.d(TAG,resName)
         this.areFieldsComplete = address.isNotEmpty() && resName.isNotEmpty() && this.validEmail(adminEmail) && this.validEmail(contEmail) && this.samePasswords(password,confirmPassword)
+//        Log.d(TAG,this.areFieldsComplete.toString())
     }
 
     private fun validEmail(string: String):Boolean{
-        return "@" in string && ".com" in string
+        return "@" in string && (".com" in string || ".mx" in string)
     }
 
     private fun samePasswords(string: String,string2: String):Boolean{
