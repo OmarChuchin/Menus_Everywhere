@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.appcoders.menus_everywhere.R
 import com.appcoders.menus_everywhere.RestaurantAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -28,6 +29,10 @@ class HomeFragment : Fragment() {
         layout.orientation = LinearLayoutManager.VERTICAL
         root.listaRestaurante.layoutManager = layout
         val restaurantSubsectionsArray = mutableListOf<String>()
+        val imagenes = mutableListOf<Int>()
+        imagenes.add(R.drawable.img_hamburgesa2)
+        imagenes.add(R.drawable.beer)
+        imagenes.add(R.drawable.tortas)
 
         restaurantQuery.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -35,15 +40,22 @@ class HomeFragment : Fragment() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var i = 0;
+                val arrPostKey = mutableListOf<String>()
+                for(child in dataSnapshot.children){
+                    if(child != null){
+                        arrPostKey.add(child.key!!);
+                    }
+                }
                 for (child in dataSnapshot.getChildren()) {
                     val post = child;
                     if (post != null) {
                         println(post.key)
                         restaurantSubsectionsArray.add(post.child("nombre").value.toString())
-                        val adapter = RestaurantAdapter(inflater.context,restaurantSubsectionsArray.toTypedArray(),post.key!!.toInt())
+                        val adapter = RestaurantAdapter(inflater.context,restaurantSubsectionsArray.toTypedArray(),arrPostKey.toTypedArray(),imagenes.toTypedArray())
                         root.listaRestaurante.adapter = adapter
                     }
-
+                    i++;
                 }
             }
 
