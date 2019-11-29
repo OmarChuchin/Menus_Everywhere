@@ -9,9 +9,10 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.android.synthetic.main.element_menu_item.view.*
+import kotlinx.android.synthetic.main.element_restaurant.view.*
 
 
-class MenuItemAdapter(val context: Context, val arrayMenu: Array<Platillo>): RecyclerView.Adapter<MenuItemAdapter.MenuItemCard>(){
+class MenuItemAdapter(val context: Context, val arrayMenu: Array<Platillo>, val arrImagenes:Array<Int>): RecyclerView.Adapter<MenuItemAdapter.MenuItemCard>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemCard {
@@ -27,15 +28,22 @@ class MenuItemAdapter(val context: Context, val arrayMenu: Array<Platillo>): Rec
 
     override fun onBindViewHolder(holder: MenuItemCard, position: Int) {
         val card = arrayMenu[position].nombre
-        holder.set( card,holder.view.context,position)
+        var imagen:Int;
+        try{
+            imagen = arrImagenes[position];
+        }catch (e : ArrayIndexOutOfBoundsException){
+            imagen = R.drawable.food_holder
+        }
+        holder.set( card,holder.view.context,position, imagen)
 
     }
 
     inner class MenuItemCard(var view :View): RecyclerView.ViewHolder(view){
 
-        fun set(card :String, context: Context, position: Int) {
+        fun set(card :String, context: Context, position: Int, imagen:Int) {
            // Toast.makeText(context,"set",Toast.LENGTH_LONG).show()
             this.view.menuItemButton.text = card
+            this.view.menuItemImage.setImageResource(imagen);
             this.view.menuItemButton.setOnClickListener { view ->
 
 

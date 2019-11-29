@@ -3,9 +3,11 @@ package com.itesm.menus_everywhere
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_menu.*
+import android.view.MotionEvent
 
 
 class MenuActivity : AppCompatActivity() {
@@ -24,7 +26,7 @@ class MenuActivity : AppCompatActivity() {
         rvMenu.layoutManager = layout
         val menuSubsectionsArray = mutableListOf<String>()
         val imagenes = mutableListOf<Int>()
-        imagenes.add(R.drawable.img_hamburgesa1)
+        //imagenes.add(R.drawable.img_hamburgesa1)
 
 
         /*The following regex checks for extras!=null and queries for its childs key*/
@@ -36,29 +38,51 @@ class MenuActivity : AppCompatActivity() {
                     val menu = Menu()
                     restaurantNameText.setText(restaurant.nombre)
 
-                    for (alimento in p0.child("Menú").children) {
+                    val tamanio = p0.child("Menú").children.asIterable().toList().size;
+                    if(tamanio > 0) {
+                        for (alimento in p0.child("Menú").children) {
 
-                        val currentAlimento = Alimento(alimento.key.toString())
+                            val currentAlimento = Alimento(alimento.key.toString())
+                            if(currentAlimento.nombre.toLowerCase().contains("hamburguesa")){
+                                imagenes.add(R.drawable.img_hamburgesa1)
+                            }else{
+                                imagenes.add(R.drawable.food_holder)
+                            }
+                            for (platillo in alimento.children) { //creaate a dto and populate with external data
+                                val currentPlatillo = Platillo(
+                                    platillo.key.toString(),
+                                    platillo.child("Calorias").value.toString(),
+                                    platillo.child("Descripción").value.toString(),
+                                    platillo.child("Precio").value.toString()
+                                )
+                                currentAlimento.platillos.add(currentPlatillo)
+                            }
 
-                        for (platillo in alimento.children){ //creaate a dto and populate with external data
-                            val currentPlatillo =  Platillo(
-                                platillo.key.toString(),
-                                platillo.child("Calorias").value.toString(),
-                                platillo.child("Descripción").value.toString(),
-                                platillo.child("Precio").value.toString())
-                            currentAlimento.platillos.add(currentPlatillo)
+                            menu.alimentos.add(currentAlimento)
+
+                            menuSubsectionsArray.add(currentAlimento.nombre)
+                            //Toast.makeText(applicationContext,menuSubsectionsArray.toString(),Toast.LENGTH_LONG).show()
+
+                            val adapter = MenuAdapter(
+                                this@MenuActivity,
+                                menu.alimentos.toTypedArray(),
+                                imagenes.toTypedArray()
+                            )
+                            rvMenu.adapter = adapter
+
                         }
+                    }else{
+                        val builder = AlertDialog.Builder(this@MenuActivity)
+                        builder.setTitle("No se encontraron elementos del menú")
+                        builder.setNeutralButton("OK"){_,_ ->
+                            finish()
+                        }
+                        val dialog: AlertDialog = builder.create()
 
-                        menu.alimentos.add(currentAlimento)
-
-                        menuSubsectionsArray.add(currentAlimento.nombre)
-                        //Toast.makeText(applicationContext,menuSubsectionsArray.toString(),Toast.LENGTH_LONG).show()
-
-                        val adapter =  MenuAdapter(this@MenuActivity,menu.alimentos.toTypedArray(), imagenes.toTypedArray())
-                        rvMenu.adapter = adapter
+                        // Display the alert dialog on app interface
+                        dialog.show()
 
                     }
-
                 }
 
                 override fun onCancelled(p0: DatabaseError) {
@@ -77,6 +101,17 @@ class MenuActivity : AppCompatActivity() {
 
     }
 
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        // If we've received a touch notification that the user has touched
+        // outside the app, finish the activity.
+        if (MotionEvent.ACTION_OUTSIDE == event.action) {
+            finish()
+            return true
+        }
+
+        // Delegate everything else to Activity.
+        return super.onTouchEvent(event)
+    }
 
 }
 

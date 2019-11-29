@@ -16,14 +16,25 @@ class MenuItemActivity : AppCompatActivity() {
         layout.orientation = LinearLayoutManager.VERTICAL
         rvMenuItem.layoutManager = layout
 
+
         val gson = Gson()
 
         val alimento = gson.fromJson<Alimento>(intent.getStringExtra("alimento"),
             Alimento::class.java)
-        //Toast.makeText(applicationContext,alimento.platillos.size.toString(),Toast.LENGTH_LONG).show()
         val nombre =alimento.nombre
+        val imagenes = mutableListOf<Int>()
+        if(nombre.toLowerCase().contains("hamburguesa")){
+            imagenes.add(R.drawable.img_hamburgesa1)
+        }else if(nombre.toLowerCase().contains("cervezas")){
+            imagenes.add(R.drawable.beer)
+        }
+        else{
+            imagenes.add(R.drawable.food_holder)
+        }
+
+
         itemNameText.setText(nombre)
-        val adapter = MenuItemAdapter(this@MenuItemActivity,alimento.platillos.toTypedArray())
+        val adapter = MenuItemAdapter(this@MenuItemActivity,alimento.platillos.toTypedArray(), imagenes.toTypedArray())
         rvMenuItem.adapter = adapter
 
     }
