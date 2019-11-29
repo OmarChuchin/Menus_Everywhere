@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.appcoders.menus_everywhere">
+    package="com.itesm.menus_everywhere">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,8 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ItemInfoActivity"></activity>
-        <activity android:name=".MenuItemActivity" />
+        <activity android:name="com.itesm.menus_everywhere.ItemInfoActivity"></activity>
+        <activity android:name="com.itesm.menus_everywhere.MenuItemActivity" />
 
 
 
@@ -41,22 +41,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mainMenu"
+            android:name="com.itesm.menus_everywhere.mainMenu"
             android:label="@string/title_activity_main_menu" />
 
-        <activity android:name=".ProductActivity" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".RestaurantsActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".RegisterRestaurant"/>
+        <activity android:name="com.itesm.menus_everywhere.ProductActivity" />
+        <activity android:name="com.itesm.menus_everywhere.MenuActivity" />
+        <activity android:name="com.itesm.menus_everywhere.RestaurantsActivity" />
+        <activity android:name="com.itesm.menus_everywhere.SettingsActivity" />
+        <activity android:name="com.itesm.menus_everywhere.ProfileActivity" />
+        <activity android:name="com.itesm.menus_everywhere.RegisterRestaurant"/>
         <activity
-            android:name=".RegisterActivity"
+            android:name="com.itesm.menus_everywhere.RegisterActivity"
             android:label="Sign up" />
         <activity
-            android:name=".QRScanner"
+            android:name="com.itesm.menus_everywhere.QRScanner"
             android:theme="@style/AppThemeFullScreen" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.itesm.menus_everywhere.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
