@@ -1,5 +1,7 @@
 package com.itesm.menus_everywhere
 
+//Clase que despliega un articulo del menú y sus componentes
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
