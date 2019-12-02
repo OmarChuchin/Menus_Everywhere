@@ -1,6 +1,10 @@
 package com.itesm.menus_everywhere
 
-
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_menu_item.*
 
 class MenuItemActivity : AppCompatActivity() {
 
